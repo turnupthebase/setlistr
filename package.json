@@ -1,0 +1,31 @@
+{
+  "name": "setlist-playlist",
+  "version": "1.0.0",
+  "description": "Create a playlist of songs from any artist's most recent setlist",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/turnupthebase/setlist-playlist.git"
+  },
+  "keywords": [
+    "setlist",
+    "playlist",
+    "music",
+    "artist"
+  ],
+  "author": "Patricia Borowiec, Sean Brown, Carla Garcia, Cerise Miller",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/turnupthebase/setlist-playlist/issues"
+  },
+  "homepage": "https://github.com/turnupthebase/setlist-playlist#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.37.10"
+  }
+}
