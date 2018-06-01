@@ -32,6 +32,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(require("./routes/auth-routes")(passport));
 
+app.use(require("./routes/html-routes"));
+
 db.sequelize.sync().then(function() {
     app.listen(PORT, function() {
         console.log("App listening on: http://localhost:" + PORT);

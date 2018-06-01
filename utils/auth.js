@@ -17,6 +17,7 @@ module.exports = function(passport) {
         }
 
         process.nextTick(function() {
+            console.log("\n\ncreating or updating user\n\n")
             db.User.findOrCreate({where: {id: userId}, defaults: userInfo}).spread(function(user, created) {
                 done(null, user)
             }).catch(done);
@@ -24,10 +25,12 @@ module.exports = function(passport) {
     }))
 
     passport.serializeUser(function(user, done) {
+        console.log("\n\nserializing user\n\n")
         done(null, user.id);
     });
       
     passport.deserializeUser(function(id, done) {
+        console.log("\n\ndeserializing user\n\n")
         User.findById(id, function(err, user) {
           done(err, user);
         });
