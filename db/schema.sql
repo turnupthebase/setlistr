@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS setlist_playlist_db;
-CREATE DATABASE setlist_playlist_db;
+DROP DATABASE IF EXISTS setlistr_db;
+CREATE DATABASE setlistr_db;
