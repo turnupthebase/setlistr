@@ -1,12 +1,21 @@
 var router = require("express").Router();
 var spotifyApi = require("../utils/spotify");
+var setlistfmClient = require("../utils/setlistfm");
 var db = require("../models");
 
 // Grab user in the beginning and store pertinent info in vars? Then use that for all other requests?
 
-router.get("/api/playlist", function(req, res) {
-    db.User.findOne({ where: {access_token: spotifyApi.getAccessToken()} }).then(function(user) {
-        spotifyApi.createPlaylist(user.id, 'My Cool Playlist').then(function(data) {
+router.get("/api/setlist", function(req, res) {
+    setlistfmClient.searchSetlists({
+        artistName: "Coldplay"
+    }).then(function(results) {
+        res.json(results)
+    }).catch(function(error) {});
+});
+
+router.get("/api/playlist", function (req, res) {
+    db.User.findOne({ where: { access_token: spotifyApi.getAccessToken() } }).then(function (user) {
+        spotifyApi.createPlaylist(user.id, 'My Cool Playlist').then(function (data) {
             var playlistId = data.body.id;
             console.log('Created playlist!');
 
@@ -20,12 +29,12 @@ router.get("/api/playlist", function(req, res) {
                 }, function (err) {
                     console.log('Something went wrong!', err);
                 });
-                
+
                 res.end();
             }, function (err) {
                 console.log('Something went wrong!', err);
             });
-        }, function(err) {
+        }, function (err) {
             console.log('Something went wrong!', err);
         });
     })
