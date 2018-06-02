@@ -19,5 +19,3 @@ db.sequelize.sync().then(function() {
     })
 })
 
-var spotifyApi = require("./utils/spotify").spotifyApi;
-
