@@ -4,39 +4,54 @@ var setlistfmClient = require("../utils/setlistfm");
 var db = require("../models");
 
 // Grab user in the beginning and store pertinent info in vars? Then use that for all other requests?
+var userId;
+var accessToken;
+router.get("/api/user", function(req, res) {
+    res.json();
+})
 
-router.get("/api/setlist", function(req, res) {
+router.post("/api/setlist", function(req, res) {
+    var artist = req.body.artist;
     setlistfmClient.searchSetlists({
-        artistName: "Coldplay"
+        artistName: artist
     }).then(function(results) {
         res.json(results)
     }).catch(function(error) {});
 });
 
-router.get("/api/playlist", function (req, res) {
-    db.User.findOne({ where: { access_token: spotifyApi.getAccessToken() } }).then(function (user) {
-        spotifyApi.createPlaylist(user.id, 'My Cool Playlist').then(function (data) {
-            var playlistId = data.body.id;
-            console.log('Created playlist!');
+router.post("/api/playlist", function (req, res) {
+    var artist = req.body.artist;
+    var setlistSongs = req.body.setlistSongs;
 
-            // Need to loop through setlist tracks and search
-            spotifyApi.searchTracks('track:Give Yourself A Try artist:The 1975').then(function (data) {
-                var trackId = data.body.tracks.items[0].uri;
+    db.User.findOne({ where: { access_token: spotifyApi.getAccessToken() } }).then(function(user) {
+        var userId = user.id;
 
-                // Add to playlist after search
-                spotifyApi.addTracksToPlaylist(user.id, playlistId, [trackId]).then(function (data) {
-                    console.log('Added tracks to playlist!');
-                }, function (err) {
-                    console.log('Something went wrong!', err);
-                });
+        spotifyApi.createPlaylist(userId, artist + " Setlist").then(function(data) {
+            playlistId = data.body.id;
 
-                res.end();
-            }, function (err) {
-                console.log('Something went wrong!', err);
-            });
+            setlistSongs.forEach(function(song) {
+                spotifyApi.searchTracks(`track:${song} artist:${artist}`).then(function(data) {
+                    if (data.body.tracks.items.length) {
+                        console.log(song);
+                        var trackId = data.body.tracks.items[0].uri;
+                        
+                        spotifyApi.addTracksToPlaylist(userId, playlistId, [trackId]).then(function(data) {
+                            console.log('Added tracks to playlist!');
+                        }, function (err) {
+                            console.log('Something went wrong!', err);
+                        })
+                    } else {
+                        return;
+                    }
+                }, function(err) {
+                    console.log(err);
+                })
+            })
         }, function (err) {
             console.log('Something went wrong!', err);
-        });
+        }).then(function(data) {
+            res.end();
+        })
     })
 })
 
