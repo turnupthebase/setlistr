@@ -4,16 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SETLISTr</title>
-    <!-- Latest compiled and minified CSS & JS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.0.0/lumen/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/reset.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>SETLISTr login</title>
+    <!-- Latest compiled and minified CSS & CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous"
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
+    <!--<[endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <!--<![endif]-->
+    <link rel="stylesheet" type="text/css" href="../public/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../public/css/style.css">
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-    Login
-    <a href="/auth/spotify"><button>Connect to Spotify</button></a>
+    <nav class="setlistr-nav">S E T L I S T r</nav>
+        <div class="setlistr-body">
+            <main class="setlistr-content">
+                Login with Spotify to gernerate a band's setlist playlist
+                    <div class = "container">
+                        <div class ="img"><img src="../public/img/headphones_flat1.png" alt="headphones to login">
+                            <div class="middle">
+                                    <a href="/auth/spotify"><img src="../public/img/spotify.png" alt="Spotify login"></div>
+                              </div>
+                    </div>
+            </main>
+        </div>
+    </nav>
+<footer>Made by turnupthebase (c) 2018</footer>
 </body>
 </html>
