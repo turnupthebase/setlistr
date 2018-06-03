@@ -3,48 +3,54 @@
 }
 
 body{
-    background-image: url("../assets/images/edwin-andrade-158050-unsplash.jpg");
+    background-image: url("../img/edwin-andrade-158050-unsplash.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 
-}
-.h1{
-    color: lightgray;
-    font-kerning: auto;
-    align-self: auto;
-    font-size: 30px;
-    padding-top: 10px;
-    padding-left: 10px;
 }
 
 .table{
     color: antiquewhite;
 }
-.box {
+
+.container {
+    position: relative;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    width: 200px;
+    width: 50%;
 }
 
 img {
     display: flex;
-    max-width: 200px;
-    max-height: 200px;
-    margin-top: 100px;
-}
+    max-width: 300px;
+    max-height: 300px;
+    opacity: 1;
+    transition: .5s ease;
+    backface-visibility: hidden;
 
-.img hover
-{
-    color:gray;
 }
-
-/* flex styles */
-.setlistr {
+.middle {
     display: flex;
-    min-height: 100vh;
-    flex-direction: column;
+    max-width: 300px;
+    max-height: 300px;
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
+
+.container:hover .img {
+    opacity: 0.3;
+}
+
+.container:hover .middle {
+    opacity: 1;
 }
 
 .setlistr-body {
@@ -58,19 +64,17 @@ img {
     color: lightgray;
 }
 
-.setlistr-ads {
-    /* 12em is the width of the columns */
-    flex: 0 0 12em;
-}
-
 .setlistr-nav {
     /* put the nav on the left */
     order: -1;
     color: lightgray;
     font-size: 30px;
     margin: 20px;
+    font-weight: bold;
 }
 
-.footer {
-        padding-bottom: 50px;
+footer {
+        color: lightgray;
 }
+
+
