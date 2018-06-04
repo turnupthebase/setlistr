@@ -3,7 +3,7 @@ var spotifyApi = require("../utils/spotify");
 var setlistfmClient = require("../utils/setlistfm");
 var db = require("../models");
 
-// Grab user in the beginning and store pertinent info in vars? Then use that for all other requests?
+// Grab user in the beginning and store pertinent info in global vars? Then use that for all other requests? And can strip out of create playlist
 var userId;
 var accessToken;
 router.get("/api/user", function(req, res) {
