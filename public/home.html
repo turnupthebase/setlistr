@@ -4,16 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
-
+    <title>SETLISTr home</title>
+    <!-- Latest compiled and minified CSS & CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous"
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
+    <!--<[endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <!--<![endif]-->
+    <link rel="stylesheet" type="text/css" href="../public/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../public/css/style.css">
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-    Home
-    <button id="search-artist">Search Artist</button>
-    <button id="create-playlist">Create Playlist</button>
-
+    <nav class="setlistr-nav">S E T L I S T r</nav>
+        <div class="setlistr-body">
+            <main class="setlistr-content">
+                <button class="pure-button pure-button-active" id="search-artist">Search Artist</button>
+                <button class="pure-button pure-button-active" id="create-playlist">Create Playlist</button>
+            </main>
+        </div>
+    </nav>
+    <div id="setlist"><ol id="setlist-songs"></ol></div>
+<footer>Made by turnupthebase (c) 2018</footer>
     <!-- Custom js -->
     <script src="./js/home.js"></script>
 </body>
