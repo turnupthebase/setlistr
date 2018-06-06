@@ -6,21 +6,40 @@ var db = require("../models");
 var userInfo = {
     userId: "",
     displayName: "",
-    profileImage: ""
+    profileImage: "",
+    playlists: []
 }
 
 router.get("/api/user", function(req, res) {
-    db.User.findOne({ where: { access_token: spotifyApi.getAccessToken() }}).then(function(user) {
+    db.User.findOne({ 
+        where: { access_token: spotifyApi.getAccessToken() }
+    }).then(function(user) {
         userInfo.userId = user.id;
         userInfo.displayName = user.display_name;
         userInfo.profileImage = user.profile_image;
 
-        res.json(userInfo);
+        getUserPlaylists(userInfo, res);
     })
 })
 
-router.post("/api/setlist", function(req, res) {
-    var artist = req.body.artist;
+router.get("/api/user/playlists", function(req, res) {
+    getUserPlaylists(userInfo, res);
+})
+
+router.get("/api/playlists", function(req, res) {
+   var query = db.Playlist.findAll({
+       attributes: ["artist", [db.sequelize.literal("COUNT(*)"), "count"]],
+       group: "artist",
+       order: [[db.sequelize.literal("count"), "DESC"]],
+       limit: 3
+   }).then(function(playlists) {
+        console.log(query);
+        res.json(playlists);
+   })
+})
+
+router.get("/api/setlist/:artist", function(req, res) {
+    var artist = req.params.artist;
     setlistfmClient.searchSetlists({
         artistName: artist
     }).then(function(results) {
@@ -41,6 +60,7 @@ router.post("/api/playlist", function (req, res) {
     spotifyApi.createPlaylist(userInfo.userId, artist + " Setlist").then(function(data) {
         console.log("Playlist created.");
         playlistId = data.body.id;
+        playlistLink = data.body.external_urls.spotify;
 
         setlistSongs.forEach(function(song, index) {
             spotifyApi.searchTracks(`track:${song} artist:${artist}`).then(function(data) {
@@ -48,23 +68,20 @@ router.post("/api/playlist", function (req, res) {
                     console.log("Song Found: " + song);
                     var trackId = data.body.tracks.items[0].uri;
                     trackIds.push(trackId);
-                    console.log(trackIds.length);
-                    console.log(setlistSongs.length);
 
-                    checkIfSearchComplete(trackIds, setlistSongs, userInfo.userId, playlistId, res);
+                    checkIfSearchComplete(artist, trackIds, setlistSongs, userInfo.userId, playlistId, playlistLink, res);
                 } else {
                     setlistSongs.splice(index, 1);
                     console.log("Song Not Found: " + song);
-                    console.log(trackIds.length);
-                    console.log(setlistSongs.length);
 
-                    checkIfSearchComplete(trackIds, setlistSongs, userInfo.userId, playlistId, res);
+                    checkIfSearchComplete(artist, trackIds, setlistSongs, userInfo.userId, playlistId, playlistLink, res);
                 }
             }, function(err) {
                 console.log("Search Error: ", err);
 
                 spotifyApi.unfollowPlaylist(userInfo.userId, playlistId).then(function(data) {
                     console.log("Playlist removed.");
+                    res.json({ error: "Playlist creation failed." })
                 }, function(err) {
                     console.log("Playlist Unfollow Error: ", err);
                 });
@@ -79,13 +96,21 @@ module.exports = router;
 
 // Helper Functions
 
-function checkIfSearchComplete(trackIds, setlistSongs, userId, playlistId, res) {
+function checkIfSearchComplete(artist, trackIds, setlistSongs, userId, playlistId, playlistLink, res) {
     if (trackIds.length === setlistSongs.length) {
         console.log("Search complete.");
 
         spotifyApi.addTracksToPlaylist(userId, playlistId, trackIds).then(function(data) {
             console.log("Tracks added.");
-            res.end();
+
+            db.Playlist.create({
+                playlist_id: playlistId,
+                playlist_link: playlistLink,
+                artist: artist,
+                user_id: userId
+            }).then(function(playlist) {
+                res.end();
+            });
         }, function (err) {
             console.log("Track Add Error: ", err);
         })
@@ -93,4 +118,15 @@ function checkIfSearchComplete(trackIds, setlistSongs, userId, playlistId, res) 
         console.log("Search not yet complete.");
         return;
     }
+}
+
+function getUserPlaylists(userInfo, res) {
+    db.Playlist.findAll({ 
+        where: { user_id : userInfo.userId }, 
+        order: [["createdAt", "DESC"]], 
+        limit: 3 
+    }).then(function(playlists) {
+        userInfo.playlists = playlists;
+        res.json(userInfo);
+    })
 }

@@ -1,15 +1,28 @@
 $.get("/api/user", function(user) {
     console.log(user);
     // on load, grab and display information on user from api/user
+    $("#image").on("load", function() {
+        $(this).append(profile_image);
+    });
+
+    $("#display-name").on("load", function() {
+        $(this).append("<p>" + display_name + "<p>");
+    });
 })
 
-var artist = "Coldplay";
+$.get("/api/playlists", function(playlists) {
+    console.log(playlists); 
+})
+
+var artist = "Bon Iver";
 // should be grabbed from user input, currently hardcoded for testing purposes
 
 $("#search-artist").on("click", function() {
-    $.post("/api/setlist", { artist: artist }, function(allSetlists) {
+    event.preventDefault();
+
+    $.get(`/api/setlist/${artist}`, function(allSetlists) {
         if (allSetlists.error) {
-            console.log("Error");
+            console.log("Setlist Error");
         } else {
             var mostRecentSetlist = allSetlists.setlist.find(function(singleSetlist) {
                 return singleSetlist.sets.set.length;
@@ -24,6 +37,7 @@ $("#search-artist").on("click", function() {
             
             $("#setlist").prepend("<h2 id='artist'>" + artist + "</h2>");
             setlistSongs.forEach(function(song) {
+                console.log(song);
                 $("#setlist-songs").append("<li class='setlist-song'>" + song + "</li>");
             })
         }
@@ -31,6 +45,8 @@ $("#search-artist").on("click", function() {
 })
 
 $("#create-playlist").on("click", function() {
+    event.preventDefault();
+
     var artist = $("#artist").text();
     var setlistSongs = [];
     $(".setlist-song").each(function() {
@@ -38,6 +54,16 @@ $("#create-playlist").on("click", function() {
     })
 
     $.post("/api/playlist", { artist: artist, setlistSongs: setlistSongs }, function(playlist) {
-        console.log("Playlist created!");
+        if (playlist.error) {
+            console.log("Playlist Error");
+        } else {
+            $.get("/api/user/playlists", function(user) {
+                console.log(user.playlists);
+            })
+
+            $.get("/api/playlists", function(playlists) {
+                console.log(playlists);
+            })
+        }
     })
 })
