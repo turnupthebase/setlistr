@@ -1,41 +1,39 @@
-*{
-    margin: 0;
-}
-
-body{
-   background-image: url("../img/edwin-andrade-158050-unsplash.jpg");
+body    {
+    background-image: url("../img/edwin-andrade-158050-unsplash.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    font-family: Arial, Helvetica, sans-serif;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
 }
 
-.table{
-    color: antiquewhite;
+p   {
+    color: lightgray;
+
 }
 
-.container {
+.table  {
+    color: lightgray;
+}
+
+.linkz {
     position: relative;
     display: flex;
     max-height: 300px;
-
 }
 
 img {
-
     max-width: 300px;
     max-height: 300px;
 }
 
-.spotify {
+.headphones {
     opacity: 1;
     transition: .5s ease;
     backface-visibility: hidden;
 }
 
-.middle {
+.spotify-login {
     display: flex;
     transition: .5s ease;
     opacity: 0;
@@ -44,13 +42,13 @@ img {
     left: 160px;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-  }
-
-.spotify:hover  {
-    opacity: 0.2;
 }
 
-.middle:hover  {
+.headphones:hover  {
+    opacity: 0.1;
+}
+
+.spotify-login:hover  {
     opacity: 1;
 }
 
@@ -74,8 +72,16 @@ img {
     font-weight: bold;
 }
 
-footer {
-        color: lightgray;
+#artist-search-bar   {
+    margin: 20px;
 }
 
+.btn {
+    margin-top: 20px;
+    margin-right: 20px;
+}
 
+.footer {
+        color: lightgray;
+        margin: 20px;
+}
