@@ -68,15 +68,11 @@ router.post("/api/playlist", function (req, res) {
                     console.log("Song Found: " + song);
                     var trackId = data.body.tracks.items[0].uri;
                     trackIds.push(trackId);
-                    console.log(trackIds.length);
-                    console.log(setlistSongs.length);
 
                     checkIfSearchComplete(artist, trackIds, setlistSongs, userInfo.userId, playlistId, playlistLink, res);
                 } else {
                     setlistSongs.splice(index, 1);
                     console.log("Song Not Found: " + song);
-                    console.log(trackIds.length);
-                    console.log(setlistSongs.length);
 
                     checkIfSearchComplete(artist, trackIds, setlistSongs, userInfo.userId, playlistId, playlistLink, res);
                 }
