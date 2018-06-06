@@ -3,13 +3,17 @@ $.get("/api/user", function(user) {
     // on load, grab and display information on user from api/user
 })
 
-var artist = "Coldplay";
+$.get("/api/playlists", function(playlists) {
+    console.log(playlists); 
+})
+
+var artist = "Bon Iver";
 // should be grabbed from user input, currently hardcoded for testing purposes
 
 $("#search-artist").on("click", function() {
-    $.post("/api/setlist", { artist: artist }, function(allSetlists) {
+    $.get(`/api/setlist/${artist}`, function(allSetlists) {
         if (allSetlists.error) {
-            console.log("Error");
+            console.log("Setlist Error");
         } else {
             var mostRecentSetlist = allSetlists.setlist.find(function(singleSetlist) {
                 return singleSetlist.sets.set.length;
@@ -38,6 +42,16 @@ $("#create-playlist").on("click", function() {
     })
 
     $.post("/api/playlist", { artist: artist, setlistSongs: setlistSongs }, function(playlist) {
-        console.log("Playlist created!");
+        if (playlist.error) {
+            console.log("Playlist Error");
+        } else {
+            $.get("/api/user/playlists", function(user) {
+                console.log(user.playlists);
+            })
+
+            $.get("/api/playlists", function(playlists) {
+                console.log(playlists);
+            })
+        }
     })
 })
