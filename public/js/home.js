@@ -18,6 +18,8 @@ var artist = "Bon Iver";
 // should be grabbed from user input, currently hardcoded for testing purposes
 
 $("#search-artist").on("click", function() {
+    event.preventDefault();
+
     $.get(`/api/setlist/${artist}`, function(allSetlists) {
         if (allSetlists.error) {
             console.log("Setlist Error");
@@ -35,6 +37,7 @@ $("#search-artist").on("click", function() {
             
             $("#setlist").prepend("<h2 id='artist'>" + artist + "</h2>");
             setlistSongs.forEach(function(song) {
+                console.log(song);
                 $("#setlist-songs").append("<li class='setlist-song'>" + song + "</li>");
             })
         }
@@ -42,6 +45,8 @@ $("#search-artist").on("click", function() {
 })
 
 $("#create-playlist").on("click", function() {
+    event.preventDefault();
+
     var artist = $("#artist").text();
     var setlistSongs = [];
     $(".setlist-song").each(function() {
