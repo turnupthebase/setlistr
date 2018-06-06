@@ -1,6 +1,13 @@
 $.get("/api/user", function(user) {
     console.log(user);
     // on load, grab and display information on user from api/user
+    $("#image").on("load", function() {
+        $(this).append(profile_image);
+    });
+
+    $("#display-name").on("load", function() {
+        $(this).append("<p>" + display_name + "<p>");
+    });
 })
 
 $.get("/api/playlists", function(playlists) {
