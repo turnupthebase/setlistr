@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="UTF-8">
@@ -7,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- Vanilla CSS -->
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../public/css/style.css">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -19,127 +20,133 @@
     <title>SETLISTr Home</title>
 </head>
 
+
 <body>
+
     <!-- Title -->
     <nav class="setlistr-nav">S E T L I S T r</nav>
 
-    <!-- Search Bar -->
-    <div id="artist-search-bar">
-        <form>
-            <div class="form-group">
-              <label for="exampleInputArtist1" class="col-10"><p>Search for an artist!</p></label>
-                <div class="col-10">
-              <input type="artist" class="form-control" id="exampleInputArtist1" placeholder="Type Artist Name Here...">
-            </div>
-            <div class="col-10">
-                <button type="submit" class="btn btn-primary" id="search-artist">Search</button>
-            </div>
-        </form>
-
-    </div>
-
+    <!-- Page Content -->
     <div class="container">
-        <!-- Grid -->
+
         <div class="row">
-            <div class="col-8">
-                <div class="row" id="setlist">
-                    <p>Setlist Placeholder</p>
-                        <ol>
-                            <id="setlist-songs">
-                        </ol>
-                </div>
 
-                <div class="form-group row">
-                    <button type="button" class="btn btn-success btn-lg" id="create-playlist">Yes! Make me a playlist!</button>
-                    <button type="button" class="btn btn-danger btn-lg" id="reset-page">No. Start over.</button>
+            <!-- Left Column -->
+            <div class="col-md-8">
+
+                <h5 class="page-header">
+                    <small>Welcome to SETLISTr - where you can create a playlist based off your favorite artist's last performance!</small>
+                </h5>
+
+                <!-- Setlist Holder -->
+                <h2>
+                    <a href="#">Your Setlist</a>
+                </h2>
+                <hr>
+                <p>List of songs go here</p>
+                <br>
+                <div id="setlist">
+                    <ul class="list-unstyled">
+                        <li>Song Name</li>
+                        <li>Song Name</li>
+                        <li>Song Name</li>
+                        <li>Song Name</li>
+                    </ul>
                 </div>
+                <br>
+                <br>
+                <a class="btn btn-primary" id="create-playlist" href="#">Create a playlist!</a>
+                <a class="btn btn-primary" id="reset-page" href="#">Meh, I'll try someone else!</a>
+
+                <hr>
 
             </div>
 
-            <div class="col-4">
-                <div class="row">
-                    <p>User Profile Placeholder</p>
-                </div>
-                    <div id="profile-picture">
-                        <p>Image</p>
-                        <a href="https://placeholder.com">
-                            <img src="http://via.placeholder.com/150x150">
-                        </a>
+            <!-- Right Column -->
+            <div class="col-md-4">
+
+                <!-- Search Box -->
+                <div class="well" id="artist-search-bar">
+                    <h5>Search for an Artist or Band</h5>
+                    <div class="input-group">
+                        <input type="text " class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" id="search-artist">Go!</button>
+                        </span>
                     </div>
-
-                    <div class="row" id="username"></div>
-                    <div class="row" id="email"></div>
-
-                <div class="row" id="my-recent-searches">
-                    <p>My Artists</p>
-                    <table class="table">
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Justin Bieber</th>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Migos</th>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Eminem</th>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Rolling Stones</th>
-                                </tr>
-                            </tbody>
-                        </table>
                 </div>
 
-                <div class="row" id="top-searches">
-                    <p>Top Searched Artists</p>
-                    <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Rank</th>
-                                    <th scope="col">Artist</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">#1</th>
-                                    <td>Cardi B</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">#2</th>
-                                    <td>Taylor Swift</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">#3</th>
-                                    <td>Drake</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">#4</th>
-                                    <td>Kygo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">#5</th>
-                                    <td>Snoop Dogg</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <!-- Profile Box -->
+                <div class="well">
+                    <h3>User Profile</h3>
+                    <div class="row">
+                        <div class="col-lg-1" id="profile-picture">
+                            <a href="https://placeholder.com">
+                                <img src="http://via.placeholder.com/150x150">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-1" id="username">
+                            <h5>Username</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Searches -->
+                <div class="well">
+                    <h4>My Recent Searches</h4>
+                    List of searches goes here
+                    <br>
+                    <br>
+                    <ul class="list-unstyled" id="my-recent-searches">
+                        <li>Artist Name</li>
+                        <li>Artist Name</li>
+                        <li>Artist Name</li>
+                        <li>Artist Name</li>
+                    </ul>
+                </div>
+
+                <!-- Top Global Searches -->
+                <div class="well">
+                    <h4>Top Searches Globally</h4>
+                    List of searches goes here
+                    <br>
+                    <br>
+                    <ul class="list-unstyled" id="top-searches">
+                        <li>Artist Name</li>
+                        <li>Artist Name</li>
+                        <li>Artist Name</li>
+                        <li>Artist Name</li>
+                    </ul>
                 </div>
 
             </div>
+
+
+            <hr>
+
+            <!-- Footer -->
+            <footer>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Made by turnupthebase &copy; 2018</p>
+                    </div>
+                </div>
+            </footer>
+
         </div>
-    </div>
 
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 
-<footer>Made by turnupthebase (c) 2018</footer>
+        <!-- Custom js -->
+        <script src="../public/js/home.js"></script>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-
-    <!-- Custom js -->
-    <script src="/js/home.js"></script>
 </body>
 
 </html>
