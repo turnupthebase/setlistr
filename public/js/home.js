@@ -39,7 +39,8 @@ $("#search-artist").on("click", function() {
                 setlistSongs.forEach(function(song) {
                     $("#setlist-songs").append("<li class='setlist-song'>" + song + "</li>");
                 })
-                $("#setlist-holder").show();
+                $("#setlist-area").show();
+                $("#search-area").hide();
             }
         })
     } else {
@@ -72,8 +73,9 @@ $("#create-playlist").on("click", function() {
 })
 
 $("#clear-search").on("click", function() {
-    $("#setlist-holder").hide();
+    $("#setlist-area").hide();
     $("#setlist-songs").empty();
+    $("#search-area").show();
 })
 
 // Helper function
