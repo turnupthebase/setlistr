@@ -8,23 +8,36 @@ module.exports = function(passport) {
         clientSecret: process.env.SPOTIFY_SECRET,
         callbackURL: process.env.SPOTIFY_CALLBACK_URL
     }, function(accessToken, refreshToken, expires_in, profile, done) {
-        var userId = profile.id
+        console.log(profile);
+        console.log(profile.emails);
+        console.log(profile.emails[0].value);
         var userInfo = {
+            id: profile.id,
             display_name: profile.displayName,
+            email: profile.emails[0].value,
             profile_image: profile.photos[0],
             access_token: accessToken,
             refresh_token: refreshToken
         }
 
-        process.nextTick(function() {
-            console.log("\n\ncreating or updating user\n\n")
-            db.User.findOrCreate({where: {id: userId}, defaults: userInfo}).spread(function(user, created) {
-                done(null, user)
-            }).catch(done);
-        })
+        db.User.upsert(userInfo).then(function(user) {
+            done(null, user);
+        }).catch(done);
+
+        // process.nextTick(function() {
+            // console.log("\n\ncreating or updating user\n\n")
+            // db.User.findOrCreate({
+            //     where: {id: userId}, 
+            //     defaults: userInfo
+            // }).then(function(user) {
+            //     console.log(user);
+            //     done(null, user)
+            // }).catch(done);
+        // })
     }))
 
     passport.serializeUser(function(user, done) {
+        console.log(user.id);
         console.log("\n\nserializing user\n\n")
         done(null, user.id);
     });
@@ -32,7 +45,7 @@ module.exports = function(passport) {
     passport.deserializeUser(function(id, done) {
         console.log("\n\ndeserializing user\n\n")
         db.User.findById(id, function(err, user) {
-          done(err, user);
+            done(null, user);
         });
     });
 }
