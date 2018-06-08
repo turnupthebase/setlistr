@@ -8,9 +8,6 @@ module.exports = function(passport) {
         clientSecret: process.env.SPOTIFY_SECRET,
         callbackURL: process.env.SPOTIFY_CALLBACK_URL
     }, function(accessToken, refreshToken, expires_in, profile, done) {
-        console.log(profile);
-        console.log(profile.emails);
-        console.log(profile.emails[0].value);
         var userInfo = {
             id: profile.id,
             display_name: profile.displayName,
@@ -20,31 +17,21 @@ module.exports = function(passport) {
             refresh_token: refreshToken
         }
 
-        db.User.upsert(userInfo).then(function(user) {
-            done(null, user);
+        db.User.upsert(userInfo).then(function(result) {
+            db.User.findById(userInfo.id).then(function(user) {
+                done(null, user);
+            });
         }).catch(done);
-
-        // process.nextTick(function() {
-            // console.log("\n\ncreating or updating user\n\n")
-            // db.User.findOrCreate({
-            //     where: {id: userId}, 
-            //     defaults: userInfo
-            // }).then(function(user) {
-            //     console.log(user);
-            //     done(null, user)
-            // }).catch(done);
-        // })
     }))
 
     passport.serializeUser(function(user, done) {
-        console.log(user.id);
-        console.log("\n\nserializing user\n\n")
+        console.log("Serializing user.");
         done(null, user.id);
     });
       
     passport.deserializeUser(function(id, done) {
-        console.log("\n\ndeserializing user\n\n")
-        db.User.findById(id, function(err, user) {
+        console.log("Deserializing user.");
+        db.User.findById(id).then(function(user) {
             done(null, user);
         });
     });
