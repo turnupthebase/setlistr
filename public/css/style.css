@@ -4,7 +4,11 @@ body    {
     background-size: cover;
     display: flex;
     min-height: 100vh;
-    flex-direction: column;
+    /*flex-direction: column;*/
+}
+
+h2 {
+    color: lightgray
 }
 
 p   {
@@ -88,7 +92,7 @@ img {
 
 .well {
     min-height:20px;
-    padding:19px;
+    padding:10px;
     margin-bottom:20px;
     background-color:#f5f5f5;
     border:1px solid #e3e3e3;
@@ -106,3 +110,14 @@ img {
 small, li {
     color: lightgray;
 }
+
+div.transbox {
+    background-color: gold;
+    opacity: 0.4;
+    /* filter: alpha(opacity=60); For IE8 and earlier */
+  }
+
+  div.transbox h5 {
+    font-weight: bold;
+    color: #000000;
+  }

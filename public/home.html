@@ -7,13 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!-- Vanilla CSS -->
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
+    <!-- Vanilla CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
@@ -22,7 +23,6 @@
 
 
 <body>
-
     <!-- Title -->
     <nav class="setlistr-nav">S E T L I S T r</nav>
 
@@ -30,16 +30,73 @@
     <div class="container">
 
         <div class="row">
-
-            <!-- Left Column -->
-            <div class="col-md-8">
+            <div class="col-md-12">
 
                 <h5 class="page-header">
                     <small>Welcome to SETLISTr - where you can create a playlist based off your favorite artist's last performance!</small>
                 </h5>
+            </div>
+        </div>
 
-                <!-- Setlist Holder -->
-                <h2>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="well transbox" id="artist-search-bar">
+                    <h5>Search for an Artist or Band</h5>
+                    <div class="input-group">
+                        <div class="inner-addon right-addon">
+                            <input type="text" class="form-control" id="search-artist" placeholder="Search" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="well">
+                        <h4>Top Searches Globally</h4>
+                        List of searches goes here
+                        <br>
+                        <br>
+                        <ul class="list-unstyled" id="top-searches">
+                            <li>Artist Name</li>
+                            <li>Artist Name</li>
+                            <li>Artist Name</li>
+                            <li>Artist Name</li>
+                        </ul>
+                    </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="well" id="user-profile">
+                    <h3>User Profile</h3>
+                    <div class="row">
+                        <div class="col-lg-1" id="profile-picture">
+                            <a href="https://placeholder.com">
+                                <img src="http://via.placeholder.com/150x150">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-1" id="username">
+                            <h5>Username</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="well" id="recent-playlists">
+                    <h4>My Recent Playlists</h4>
+                    List of searches goes here
+                    <br>
+                    <br>
+                    <ul class="list-unstyled" id="my-recent-searches">
+                        <li>Artist Name</li>
+                        <li>Artist Name</li>
+                        <li>Artist Name</li>
+                        <li>Artist Name</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Setlist Holder -->
+        <!-- <h2>
                     <a href="#">Your Setlist</a>
                 </h2>
                 <hr>
@@ -58,85 +115,19 @@
                 <a class="btn btn-primary" id="create-playlist" href="#">Create a playlist!</a>
                 <a class="btn btn-primary" id="reset-page" href="#">Meh, I'll try someone else!</a>
 
-                <hr>
+                <hr> -->
 
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Made by turnupthebase &copy; 2018</p>
+                </div>
             </div>
-
-            <!-- Right Column -->
-            <div class="col-md-4">
-
-                <!-- Search Box -->
-                <div class="well" id="artist-search-bar">
-                    <h5>Search for an Artist or Band</h5>
-                    <div class="input-group">
-                        <input type="text " class="form-control">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" id="search-artist">Go!</button>
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Profile Box -->
-                <div class="well">
-                    <h3>User Profile</h3>
-                    <div class="row">
-                        <div class="col-lg-1" id="profile-picture">
-                            <a href="https://placeholder.com">
-                                <img src="http://via.placeholder.com/150x150">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-1" id="username">
-                            <h5>Username</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recent Searches -->
-                <div class="well">
-                    <h4>My Recent Searches</h4>
-                    List of searches goes here
-                    <br>
-                    <br>
-                    <ul class="list-unstyled" id="my-recent-searches">
-                        <li>Artist Name</li>
-                        <li>Artist Name</li>
-                        <li>Artist Name</li>
-                        <li>Artist Name</li>
-                    </ul>
-                </div>
-
-                <!-- Top Global Searches -->
-                <div class="well">
-                    <h4>Top Searches Globally</h4>
-                    List of searches goes here
-                    <br>
-                    <br>
-                    <ul class="list-unstyled" id="top-searches">
-                        <li>Artist Name</li>
-                        <li>Artist Name</li>
-                        <li>Artist Name</li>
-                        <li>Artist Name</li>
-                    </ul>
-                </div>
-
-            </div>
+        </footer>
 
 
-            <hr>
-
-            <!-- Footer -->
-            <footer>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>Made by turnupthebase &copy; 2018</p>
-                    </div>
-                </div>
-            </footer>
-
-        </div>
-
+  
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
