@@ -1,41 +1,42 @@
-*{
-    margin: 0;
-}
-
-body{
-   background-image: url("../img/edwin-andrade-158050-unsplash.jpg");
+body    {
+    background-image: url("../img/edwin-andrade-158050-unsplash.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    font-family: Arial, Helvetica, sans-serif;
     display: flex;
     min-height: 100vh;
-    flex-direction: column;
+    /*flex-direction: column;*/
 }
 
-.table{
-    color: antiquewhite;
+h2 {
+    color: lightgray
 }
 
-.container {
+p   {
+    color: lightgray;
+}
+
+.table  {
+    color: lightgray;
+}
+
+.linkz {
     position: relative;
     display: flex;
     max-height: 300px;
-
 }
 
 img {
-
     max-width: 300px;
     max-height: 300px;
 }
 
-.spotify {
+.headphones {
     opacity: 1;
     transition: .5s ease;
     backface-visibility: hidden;
 }
 
-.middle {
+.spotify-login {
     display: flex;
     transition: .5s ease;
     opacity: 0;
@@ -44,13 +45,13 @@ img {
     left: 160px;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-  }
-
-.spotify:hover  {
-    opacity: 0.2;
 }
 
-.middle:hover  {
+.headphones:hover  {
+    opacity: 0.1;
+}
+
+.spotify-login:hover  {
     opacity: 1;
 }
 
@@ -74,8 +75,52 @@ img {
     font-weight: bold;
 }
 
-footer {
-        color: lightgray;
+/* #artist-search-bar   {
+    margin: 20px;
+} */
+
+.btn {
+    margin-top: 20px;
+    margin-right: 20px;
 }
 
+.footer {
+        color: lightgray;
+        margin: 20px;
+}
 
+.well {
+    min-height:20px;
+    padding:10px;
+    margin-bottom:20px;
+    background-color:#f5f5f5;
+    border:1px solid #e3e3e3;
+    border-radius:4px;
+    -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow:inset 0 1px 1px rgba(0,0,0,.05)
+}
+
+.page-header {
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+    border-bottom: 1px solid #eee;
+}
+
+small, li {
+    color: lightgray;
+}
+
+div.transbox {
+    background-color: gold;
+    opacity: 0.4;
+    /* filter: alpha(opacity=60); For IE8 and earlier */
+}
+
+div.transbox h5 {
+    font-weight: bold;
+    color: #000000;
+}
+
+#setlist-area {
+    display: none;
+}

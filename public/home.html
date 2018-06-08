@@ -1,147 +1,85 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Vanilla CSS -->
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+    <title>SETLISTr Home</title>
+</head>
+<body>
+    <nav class="setlistr-nav">S E T L I S T r</nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h5 class="page-header">
+                    <small>Welcome to SETLISTr - where you can create a playlist based off your favorite artist's last performance!</small>
+                </h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="well transbox" id="search-area">
+                    <h5>Search for an Artist or Band</h5>
+                    <div class="input-group">
+                        <input type="text" id="artist-input" class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" id="search-artist">Go!</button>
+                        </span>
+                    </div>
+                </div>
+                <div id="setlist-area">
+                    <h2 id="setlist-artist"></h2>
+                    <ol id="setlist-songs"></ol>
+                    <div id="setlist-buttons">
+                        <button class="btn btn-primary" id="create-playlist">Create a playlist!</button>
+                        <button class="btn btn-primary" id="clear-search">Meh, I'll try someone else!</button>
+                    </div>
+                </div>
+                <h2 id="setlist-error"></h2>
+                <h2 id="playlist-error"></h2>
+                <div class="well">
+                    <h4>Most Popular Playlists</h4>
+                    <ol id="global-playlists"></ol>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="well">
+                    <h3 id="display-name"></h3>
+                    <div class="row">
+                        <img src="" id="profile-image">
+                    </div>
+                    <h4>Your Recent Playlists</h4>
+                    <ul class="list-unstyled" id="user-playlists"></ul>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Made by turnupthebase &copy; 2018</p>
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-    <title>SETLISTr Home</title>
-</head>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-<body>
-    <!-- Title -->
-    <nav class="setlistr-nav">S E T L I S T r</nav>
-
-    <!-- Search Bar -->
-    <div id="artist-search-bar">
-        <form> 
-            <div class="form-group">
-              <label for="exampleInputArtist1">Search for an artist!</label>
-              <input type="artist" class="form-control" id="exampleInputArtist1" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-primary" id="search-artist">Search</button>
-        </form>
-    </div>
-
-    <div class="container">
-        <!-- Grid -->
-        <div class="row">
-            <div class="col-8">
-                <div class="row" id="setlist">
-                    <p>Setlist Placeholder</p>
-                        <ol 
-                            id="setlist-songs">
-                        </ol>
-                </div>
-
-                <div class="row">
-                    <div class="col">
-                        <button type="button" class="btn btn-success btn-lg" id="create-playlist">Yes! Make me a playlist!</button>
-                    </div>
-                    <div class="col">
-                        <button type="button" class="btn btn-danger btn-lg" id="reset-page">No. Start over.</button>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-4">
-                <div class="row">
-                    <p>User Profile Placeholder</p>
-                </div>
-                    <div id="profile-picture">
-                        <p>Image</p>
-                        <a href="https://placeholder.com">
-                            <img src="http://via.placeholder.com/150x150">
-                        </a>
-                    </div>
-
-                    <div class="row" id="username"></div>
-                    <div class="row" id="email"></div>
-
-                
-
-                <div class="row" id="my-recent-searches">
-                    <p>My Artists</p>
-                    <table class="table">
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Justin Bieber</th>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Migos</th>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Eminem</th>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Rolling Stones</th>
-                                </tr>
-                            </tbody>
-                        </table>
-                </div>
-
-                <div class="row" id="top-searches">
-                    <p>Top Searched Artists</p>
-                    <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Rank</th>
-                                    <th scope="col">Artist</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">#1</th>
-                                    <td>Cardi B</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">#2</th>
-                                    <td>Taylor Swift</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">#3</th>
-                                    <td>Drake</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">#4</th>
-                                    <td>Kygo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">#5</th>
-                                    <td>Snoop Dogg</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
-<footer>Made by turnupthebase (c) 2018</footer>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-
-    <!-- Custom js -->
+    <!-- Custom JS -->
     <script src="/js/home.js"></script>
 </body>
-
 </html>
