@@ -97,6 +97,17 @@ module.exports = router;
 
 // Helper Functions
 
+function getUserPlaylists(userInfo, res) {
+    db.Playlist.findAll({ 
+        where: { user_id : userInfo.userId }, 
+        order: [["createdAt", "DESC"]], 
+        limit: 3 
+    }).then(function(playlists) {
+        userInfo.playlists = playlists;
+        res.json(userInfo);
+    })
+}
+
 function checkIfSearchComplete(searchCounter, setlistSongs, userId, playlistId, trackIds, playlistLink, artist, res) {
     if (searchCounter === setlistSongs.length) {
         console.log("Search complete.");
@@ -119,15 +130,4 @@ function checkIfSearchComplete(searchCounter, setlistSongs, userId, playlistId, 
         console.log("Search not yet complete.");
         return;
     }
-}
-
-function getUserPlaylists(userInfo, res) {
-    db.Playlist.findAll({ 
-        where: { user_id : userInfo.userId }, 
-        order: [["createdAt", "DESC"]], 
-        limit: 3 
-    }).then(function(playlists) {
-        userInfo.playlists = playlists;
-        res.json(userInfo);
-    })
 }
