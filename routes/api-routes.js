@@ -33,7 +33,6 @@ router.get("/api/playlists", function(req, res) {
        order: [[db.sequelize.literal("count"), "DESC"]],
        limit: 3
    }).then(function(playlists) {
-        console.log(query);
         res.json(playlists);
    })
 })
@@ -56,6 +55,7 @@ router.post("/api/playlist", function (req, res) {
     var setlistSongs = req.body.setlistSongs;
     var playlistId = "";
     var trackIds = [];
+    var searchCounter = 0;
 
     spotifyApi.createPlaylist(userInfo.userId, artist + " Setlist").then(function(data) {
         console.log("Playlist created.");
@@ -64,17 +64,18 @@ router.post("/api/playlist", function (req, res) {
 
         setlistSongs.forEach(function(song, index) {
             spotifyApi.searchTracks(`track:${song} artist:${artist}`).then(function(data) {
+                searchCounter++;
+
                 if (data.body.tracks.items.length) {
                     console.log("Song Found: " + song);
                     var trackId = data.body.tracks.items[0].uri;
                     trackIds.push(trackId);
 
-                    checkIfSearchComplete(artist, trackIds, setlistSongs, userInfo.userId, playlistId, playlistLink, res);
+                    checkIfSearchComplete(searchCounter, setlistSongs, userInfo.userId, playlistId, trackIds, playlistLink, artist, res);
                 } else {
-                    setlistSongs.splice(index, 1);
                     console.log("Song Not Found: " + song);
 
-                    checkIfSearchComplete(artist, trackIds, setlistSongs, userInfo.userId, playlistId, playlistLink, res);
+                    checkIfSearchComplete(searchCounter, setlistSongs, userInfo.userId, playlistId, trackIds, playlistLink, artist, res);
                 }
             }, function(err) {
                 console.log("Search Error: ", err);
@@ -87,7 +88,7 @@ router.post("/api/playlist", function (req, res) {
                 });
             })
         })
-    }, function (err) {
+    }, function(err) {
         console.log("Playlist Creation Error: ", err);
     })
 })
@@ -96,8 +97,8 @@ module.exports = router;
 
 // Helper Functions
 
-function checkIfSearchComplete(artist, trackIds, setlistSongs, userId, playlistId, playlistLink, res) {
-    if (trackIds.length === setlistSongs.length) {
+function checkIfSearchComplete(searchCounter, setlistSongs, userId, playlistId, trackIds, playlistLink, artist, res) {
+    if (searchCounter === setlistSongs.length) {
         console.log("Search complete.");
 
         spotifyApi.addTracksToPlaylist(userId, playlistId, trackIds).then(function(data) {

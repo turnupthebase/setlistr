@@ -59,7 +59,7 @@ $("#create-playlist").on("click", function() {
 
     $.post("/api/playlist", { artist: artist, setlistSongs: setlistSongs }, function(playlist) {
         if (playlist.error) {
-            console.log("Playlist Error");
+            $("#setlist-error").text("Sorry, we were unable to create a playlist! Please try again.");
         } else {
             $.get("/api/user/playlists", function(user) {
                 displayUserPlaylists(user.playlists);
