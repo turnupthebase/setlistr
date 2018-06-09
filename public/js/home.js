@@ -48,6 +48,7 @@ $("#search-artist").on("click", function() {
 
 $("#create-playlist").on("click", function() {
     event.preventDefault();
+    $("#setlist-buttons").hide(); 
 
     var artist = $("#setlist-artist").text();
     var setlistSongs = [];
@@ -56,9 +57,13 @@ $("#create-playlist").on("click", function() {
     })
 
     $.post("/api/playlist", { artist: artist, setlistSongs: setlistSongs }, function(playlist) {
+        $("#search-again").show();
+        
         if (playlist.error) {
-            $("#setlist-error").text("Sorry, we were unable to create a playlist! Please try again.");
+            $("#playlist-outcome").text("Sorry, we were unable to create a playlist. Please try again.");
         } else {
+            $("#playlist-outcome").text("Playlist successfully created!");
+
             $.get("/api/user/playlists", function(user) {
                 displayUserPlaylists(user.playlists);
             })
@@ -70,9 +75,12 @@ $("#create-playlist").on("click", function() {
     })
 })
 
-$("#clear-search").on("click", function() {
+$("#clear-search, #search-again").on("click", function() {
     $("#setlist-area").hide();
     $("#setlist-songs").empty();
+    $("#playlist-outcome").text("");
+    $("#search-again").hide();
+    $("#setlist-buttons").show();
     $("#search-area").show();
 })
 
