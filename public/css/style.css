@@ -11,7 +11,7 @@ body    {
 
 nav h1 {
     color: white;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: "lato"
 }
 p, li, h2   {
     color: lightgray;
@@ -20,12 +20,10 @@ p, li, h2   {
 h3, h4, h5 {
     color: dimgray;
 }
-
 img {
     max-width: 300px;
     max-height: 300px;
 }
-
 .headphones {
     opacity: 1;
     transition: .5s ease;
@@ -42,18 +40,20 @@ img {
     transition: .5s ease;
     opacity: 0;
     position: absolute;
-    top: 190px;
-    left: 160px;
+    top: 210px;
+    left: 180px;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
 }
 
 .spotify-login:hover  {
     opacity: 1;
+    transform: scale(1.5, 1.5);
+    -webkit-filter: brightness(150%);
 }
 
 .btn {
-    margin-top: 20px;
+    margin-top: 40px;
     margin-right: 20px;
     color: #6c757d;
     background-color: transparent;
@@ -79,7 +79,7 @@ img {
 
 .page-header {
     padding-bottom: 9px;
-    margin: 40px 0 20px;
+    margin: 40px 0 40px;
     border-bottom: 1px solid #eee;
 }
 
@@ -106,24 +106,18 @@ div.transbox {
     display: none;
 }
 
+#playlist-outcome {
+    margin-top: 30px;
+}
+
 #search-again {
     display: none;
 }
 
-/* .btn-primary, .btn-default {
-    background: limegreen;
-    border-color: white;
-} */
-
-/* .btn-outline-secondary {
-    color: #6c757d;
-    background-color: transparent;
-    background-image: none;
-    border-color: #6c757d;
-} */
-
 #profile-image {
-    border: 1px solid limegreen;
+    border: 1px solid darkgray;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .form-inline .form-control {
@@ -132,21 +126,18 @@ div.transbox {
     vertical-align: middle;
 }
 
-
 /*Some Aesthetic Styling*/
 .shimmer{
-    /* styling stuff */
-
     font-weight:400;
     font-size:3em;
     color: rgba(255,255,255,0.1);
 }
 .shimmer {
   /* the shimmer magic */
-  background: -webkit-gradient(linear,left top,right top,from(#222),to(#222),color-stop(.1,#fff));
-  background: -moz-gradient(linear,left top,right top,from(#222),to(#222),color-stop(.5,#fff));
-  background: gradient(linear,left top,right top,from(#222),to(#222),color-stop(.5,#fff));
-  -webkit-background-size: 125px 100%;
+    background: -webkit-gradient(linear,left top,right top,from(#222),to(#222),color-stop(.1,#fff));
+    background: -moz-gradient(linear,left top,right top,from(#222),to(#222),color-stop(.5,#fff));
+    background: gradient(linear,left top,right top,from(#222),to(#222),color-stop(.5,#fff));
+    -webkit-background-size: 125px 100%;
     -moz-background-size: 125px 100%;
     background-size: 125px 100%;
     -webkit-background-clip: text;
@@ -207,4 +198,10 @@ div.transbox {
     100% {
       background-position: top right;
     }
+  }
+
+  .footer{
+    color: darkgray;
+    bottom:0;
+
   }
