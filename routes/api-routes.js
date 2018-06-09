@@ -88,6 +88,7 @@ router.post("/api/playlist", function (req, res) {
         })
     }, function(err) {
         console.log("Playlist Creation Error: ", err);
+        res.json({ error: "Playlist creation failed." })
     })
 })
 
