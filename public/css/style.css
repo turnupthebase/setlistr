@@ -111,6 +111,10 @@ div.transbox {
     display: none;
 }
 
+#setlist-error {
+    margin-top: 15px;
+}
+
 #playlist-outcome {
     margin-top: 30px;
 }
@@ -215,10 +219,13 @@ div.transbox {
     }
   }
 
-  .footer {
-    color: white;
-    position:absolute;
-    bottom:0;
-    text-shadow: 2px 2px 4px #000000;
-  
-  }
+footer {
+  color: white;
+  position: fixed;
+  bottom:0;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+.repo-link {
+    color: limegreen;
+}
