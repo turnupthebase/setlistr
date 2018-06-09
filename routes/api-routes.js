@@ -11,9 +11,7 @@ var userInfo = {
 }
 
 router.get("/api/user", function(req, res) {
-    db.User.findOne({ 
-        where: { access_token: spotifyApi.getAccessToken() }
-    }).then(function(user) {
+    db.User.findById(req.user.id).then(function(user) {
         userInfo.userId = user.id;
         userInfo.displayName = user.display_name;
         userInfo.profileImage = user.profile_image;
