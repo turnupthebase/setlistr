@@ -9,14 +9,12 @@ $.get("/api/playlists", function(playlists) {
     displayGlobalPlaylists(playlists);
 })
 
-var artist = "";
-
 $("#search-artist").on("click", function() {
     event.preventDefault();
 
     if ($("#artist-input").val().trim()) {
         $("#setlist-error").text("");
-        artist = $("#artist-input").val().trim();
+        var artist = $("#artist-input").val().trim();
         $("#artist-input").val("");
 
         $.get(`/api/setlist/${artist}`, function(allSetlists) {
@@ -78,7 +76,7 @@ $("#clear-search").on("click", function() {
     $("#search-area").show();
 })
 
-// Helper function
+// Helper functions
 
 function displayUserPlaylists(playlists) {
     $("#user-playlists").empty();
