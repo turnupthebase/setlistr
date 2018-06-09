@@ -97,7 +97,7 @@ function getSetlist(artist) {
 function displayUserPlaylists(playlists) {
     $("#user-playlists").empty();
     playlists.forEach(function(playlist) {
-        $("#user-playlists").append(`<a target="_blank" href="${playlist.playlist_link}"><li>${playlist.artist}</li></a>`)
+        $("#user-playlists").append(`<a target="_blank" href="${playlist.playlist_link}"><li class="user-playlist">${playlist.artist}</li></a>`)
     })
 }
 

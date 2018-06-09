@@ -23,7 +23,7 @@
 
 <body>
     <div class="container">
-        <nav class="navbar navbar-default"><h1>S E T L I S T r</h1></nav>
+        <nav class="navbar navbar-default"><h1 class="shimmer"> S E T L I S T r </h1></nav>            
         <div class="row">
             <div class="col-md-12">
                 <h5 class="page-header text-center">
@@ -44,13 +44,15 @@
                 <div class="well transbox" id="setlist-area">
                     <h2 class="text-center" id="setlist-artist"></h2>
                     <ol id="setlist-songs"></ol>
-                    <div id="setlist-buttons">
+                    <div class="text-center" id="setlist-buttons">
                         <button class="btn btn-secondary" id="create-playlist">Make me a playlist!</button>
                         <button class="btn btn-secondary" id="clear-search">I'll try someone else.</button>
                     </div>
                     <h2 class="text-center" id="playlist-outcome"></h2>
-                    <button class="btn btn-secondary" id="search-again">Let's do this again.</button>
-                </div>
+                    <div class="text-center">
+                        <button class="btn btn-secondary" id="search-again">Let's do this again.</button>
+                    </div>
+             </div>
             </div>
             <div class="col-md-4">
                 <div class="well transbox">
@@ -69,10 +71,11 @@
                 </div>
             </div>
         </div>
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Made by turnupthebase &copy; 2018</p>
+
+        <footer class="footer">
+            <div class="navbar navbar-inner  navbar-fixed-bottom">
+                <div class="footer-copyright ">© 2018 Copyright:
+                    <a href="https://github.com/turnupthebase/setlistr"> turnupthebase </a>
                 </div>
             </div>
         </footer>
