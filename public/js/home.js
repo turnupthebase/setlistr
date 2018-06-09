@@ -9,6 +9,11 @@ $.get("/api/playlists", function(playlists) {
     displayGlobalPlaylists(playlists);
 })
 
+$(document).on("click", ".top-artist", function() {
+    var artist = $(this).data("artist");
+    getSetlist(artist);
+})
+
 $("#search-artist").on("click", function() {
     event.preventDefault();
 
@@ -16,31 +21,7 @@ $("#search-artist").on("click", function() {
         $("#setlist-error").text("");
         var artist = $("#artist-input").val().trim();
         $("#artist-input").val("");
-
-        $.get(`/api/setlist/${artist}`, function(allSetlists) {
-            if (allSetlists.error) {
-                $("#setlist-error").text("Sorry. We were unable to find a setlist for that artist.");
-            } else {
-                var mostRecentSetlist = allSetlists.setlist.find(function(singleSetlist) {
-                    return singleSetlist.sets.set.length;
-                });
-
-                var setlistSongs = [];
-                mostRecentSetlist.sets.set.forEach(function(subset) {
-                    subset.song.forEach(function(song) {
-                        setlistSongs.push(song.name);
-                    })
-                })
-
-                $("#setlist-artist").text(mostRecentSetlist.artist.name);
-                $("#setlist-songs").empty();
-                setlistSongs.forEach(function(song) {
-                    $("#setlist-songs").append("<li class='setlist-song'>" + song + "</li>");
-                })
-                $("#setlist-area").show();
-                $("#search-area").hide();
-            }
-        })
+        getSetlist(artist);
     } else {
         $("#artist-input").val("");
     }
@@ -86,6 +67,33 @@ $("#clear-search, #search-again").on("click", function() {
 
 // Helper functions
 
+function getSetlist(artist) {
+    $.get(`/api/setlist/${artist}`, function(allSetlists) {
+        if (allSetlists.error) {
+            $("#setlist-error").text("Sorry. We were unable to find a setlist for that artist.");
+        } else {
+            var mostRecentSetlist = allSetlists.setlist.find(function(singleSetlist) {
+                return singleSetlist.sets.set.length;
+            });
+
+            var setlistSongs = [];
+            mostRecentSetlist.sets.set.forEach(function(subset) {
+                subset.song.forEach(function(song) {
+                    setlistSongs.push(song.name);
+                })
+            })
+
+            $("#setlist-artist").text(mostRecentSetlist.artist.name);
+            $("#setlist-songs").empty();
+            setlistSongs.forEach(function(song) {
+                $("#setlist-songs").append("<li class='setlist-song'>" + song + "</li>");
+            })
+            $("#setlist-area").show();
+            $("#search-area").hide();
+        }
+    })  
+}
+
 function displayUserPlaylists(playlists) {
     $("#user-playlists").empty();
     playlists.forEach(function(playlist) {
@@ -96,6 +104,6 @@ function displayUserPlaylists(playlists) {
 function displayGlobalPlaylists(playlists) {
     $("#global-playlists").empty();
     playlists.forEach(function(playlist) {
-        $("#global-playlists").append(`<li>${playlist.artist}: ${playlist.count} created</li>`);
+        $("#global-playlists").append(`<li class="top-artist" data-artist="${playlist.artist}">${playlist.artist}: ${playlist.count} created</li>`);
     })
 }
