@@ -72,6 +72,12 @@ img {
     border-color: #545b62;
 }
 
+.fa-spinner {
+    font-size: 24px;
+    color: white;
+    display: none;
+}
+
 .well {
     min-height:20px;
     padding:10px;

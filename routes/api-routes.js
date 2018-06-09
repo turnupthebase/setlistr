@@ -124,6 +124,7 @@ function checkIfSearchComplete(searchCounter, setlistSongs, userId, playlistId, 
             });
         }, function (err) {
             console.log("Track Add Error: ", err);
+            res.json({ error: "Playlist creation failed." })
         })
     } else {
         console.log("Search not yet complete.");

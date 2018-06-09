@@ -30,6 +30,7 @@ $("#search-artist").on("click", function() {
 $("#create-playlist").on("click", function() {
     event.preventDefault();
     $("#setlist-buttons").hide(); 
+    $(".fa-spinner").show();
 
     var artist = $("#setlist-artist").text();
     var setlistSongs = [];
@@ -39,6 +40,7 @@ $("#create-playlist").on("click", function() {
 
     $.post("/api/playlist", { artist: artist, setlistSongs: setlistSongs }, function(playlist) {
         $("#search-again").show();
+        $(".fa-spinner").hide();
         
         if (playlist.error) {
             $("#playlist-outcome").text("Sorry, we were unable to create a playlist. Please try again.");
