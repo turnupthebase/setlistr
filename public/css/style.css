@@ -127,6 +127,8 @@ div.transbox {
 
 #search-again {
     display: none;
+    margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 #profile-image {
