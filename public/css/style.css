@@ -13,21 +13,12 @@ nav h1 {
     color: white;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-
-h2 {
-    color: lightgray
-}
-
-#setlist-artist {
-    color: dimgray;
+p, li, h2   {
+    color: lightgray;
 }
 
 h3, h4, h5 {
     color: dimgray;
-}
-
-p, li   {
-    color: lightgray;
 }
 
 img {
@@ -64,6 +55,16 @@ img {
 .btn {
     margin-top: 20px;
     margin-right: 20px;
+    color: #6c757d;
+    background-color: transparent;
+    background-image: none;
+    border-color: limegreen;
+}
+
+.btn:hover {
+    color: limegreen;
+    background-color: #5a6268;
+    border-color: #545b62;
 }
 
 .well {
@@ -93,6 +94,10 @@ div.transbox {
     color: #000000;
 }
 
+#setlist-artist {
+    color: dimgray;
+    text-decoration: underline dotted darkgray;
+}
 #setlist-buttons {
     margin-left: 8px;
 }
@@ -105,10 +110,17 @@ div.transbox {
     display: none;
 }
 
-.btn-primary, .btn-default { 
+/* .btn-primary, .btn-default {
     background: limegreen;
-    border-color: white; 
-}
+    border-color: white;
+} */
+
+/* .btn-outline-secondary {
+    color: #6c757d;
+    background-color: transparent;
+    background-image: none;
+    border-color: #6c757d;
+} */
 
 #profile-image {
     border: 1px solid limegreen;
@@ -119,3 +131,80 @@ div.transbox {
     width: auto;
     vertical-align: middle;
 }
+
+
+/*Some Aesthetic Styling*/
+.shimmer{
+    /* styling stuff */
+
+    font-weight:400;
+    font-size:3em;
+    color: rgba(255,255,255,0.1);
+}
+.shimmer {
+  /* the shimmer magic */
+  background: -webkit-gradient(linear,left top,right top,from(#222),to(#222),color-stop(.1,#fff));
+  background: -moz-gradient(linear,left top,right top,from(#222),to(#222),color-stop(.5,#fff));
+  background: gradient(linear,left top,right top,from(#222),to(#222),color-stop(.5,#fff));
+  -webkit-background-size: 125px 100%;
+    -moz-background-size: 125px 100%;
+    background-size: 125px 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-animation-name: shimmer;
+    -moz-animation-name: shimmer;
+    -webkit-animation-name: shimmer;
+    animation-name: shimmer;
+    -webkit-animation-duration: 4s;
+    -moz-animation-duration: 4s;
+    -webkit-animation-duration: 4s;
+    animation-duration: 4s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-color: #222;
+  }
+  @-moz-keyframes shimmer {
+    0% {
+      background-position: top left;
+    }
+    100% {
+      background-position: top right;
+    }
+  }
+  @-webkit-keyframes shimmer {
+    0% {
+      background-position: top left;
+    }
+    100% {
+      background-position: top right;
+    }
+  }
+  @-o-keyframes shimmer {
+    0% {
+      background-position: top left;
+    }
+    100% {
+      background-position: top right;
+    }
+  }
+  @-ms-keyframes shimmer {
+    0% {
+      background-position: top left;
+    }
+    100% {
+      background-position: top right;
+    }
+  }
+  @keyframes shimmer {
+    0% {
+      background-position: top left;
+    }
+    100% {
+      background-position: top right;
+    }
+  }

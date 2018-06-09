@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use(session({
-    secret: process.env.SECRET,
+    secret: "hello",
     store: new SequelizeStore({
         db: db.sequelize
     }),
